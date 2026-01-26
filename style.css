@@ -535,13 +535,48 @@ main {
     text-align: center;
     font-size: 48px;
     font-weight: 900;
-    margin: 20px 0;
+    margin: 0;
     font-family: monospace;
     background: black;
     color: var(--primary-color);
     padding: 20px;
     border: var(--border-width) solid var(--border-color);
     box-shadow: 4px 4px 0px var(--border-color);
+    min-width: 250px;
+}
+
+.timer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.btn-adjust {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: var(--border-width) solid var(--border-color);
+    color: black;
+    font-size: 24px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px var(--border-color);
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-adjust:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px var(--border-color);
+}
+
+.btn-adjust:active {
+    transform: translate(0, 0);
+    box-shadow: 0 0 0 var(--border-color);
 }
 
 .pomodoro-controls {
@@ -614,4 +649,34 @@ main {
     .input-form input[type="text"] {
         width: 100%;
     }
+}
+
+/* Analytics Filters */
+.filter-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    border: var(--border-width) solid var(--border-color);
+    background: white;
+    color: var(--text-color);
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 0px var(--border-color);
+    border-radius: 0;
+}
+
+.filter-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px var(--border-color);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.1);
+    transform: translate(1px, 1px);
 }

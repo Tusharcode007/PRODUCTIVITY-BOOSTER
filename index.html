@@ -87,7 +87,11 @@
                     <button class="pomo-tab" data-mode="short">SHORT BREAK</button>
                     <button class="pomo-tab" data-mode="long">LONG BREAK</button>
                 </div>
-                <div class="pomodoro-display" id="pomoDisplay">25:00</div>
+                <div class="timer-container">
+                    <button class="btn-adjust" id="pomoMinus" title="-5 minutes">-</button>
+                    <div class="pomodoro-display" id="pomoDisplay">25:00</div>
+                    <button class="btn-adjust" id="pomoPlus" title="+5 minutes">+</button>
+                </div>
                 <div class="pomodoro-controls">
                     <button class="btn-theme" id="startPomo">START</button>
                     <button class="btn-theme" id="pausePomo">PAUSE</button>
@@ -115,13 +119,7 @@
                 </audio>
             </section>
 
-            <!-- Quick Notes Section (NEW) -->
-            <section class="section">
-                <div class="section-header">
-                    <h2>QUICK NOTES</h2>
-                </div>
-                <textarea id="quickNote" class="note-area" placeholder="Write something down..."></textarea>
-            </section>
+
 
             <!-- Tasks Section -->
             <section class="section">
@@ -166,6 +164,14 @@
                     <button type="submit">ADD</button>
                 </form>
                 <ul class="list" id="goalList"></ul>
+            </section>
+
+            <!-- Quick Notes Section (NEW) -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>QUICK NOTES</h2>
+                </div>
+                <textarea id="quickNote" class="note-area" placeholder="Write something down..."></textarea>
             </section>
         </main>
     </div>

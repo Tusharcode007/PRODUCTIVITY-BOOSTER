@@ -17,12 +17,14 @@ A powerful, **Neo-Brutalist** productivity suite designed to keep you focused an
 
 ### Focus Tools
 - **Pomodoro Timer**: Includes **Work (25m)**, **Short Break (5m)**, and **Long Break (15m)** modes.
+    - **Adjustable Duration**: Use the **+** (plus) and **-** (minus) buttons to increase or decrease time by 5 minutes.
 - **Meditation Zone**: A dedicated section with a breathing visualizer and calm audio.
-- **Quick Notes**: A sticky note area that auto-saves your thoughts instantly.
+- **Quick Notes**: A sticky note area (now conveniently located at the bottom) that auto-saves your thoughts instantly.
 
 ### Analytics Dashboard
 - **Daily Activity**: Bar charts tracking your task completion over the last 7 days.
 - **Monthly Focus**: Breakdown of your productivity distribution (Tasks vs. Pomodoros vs. Habits).
+- **Study Hours**: Line graph visualizing your focus time in minutes, with **Day Wise** and **Week Wise** filters.
 
 ## How to Run
 
@@ -37,6 +39,6 @@ A powerful, **Neo-Brutalist** productivity suite designed to keep you focused an
 - **Chart.js** (for Analytics)
 - **LocalStorage API** (for data persistence)
 - **Google Fonts** (Courier Prime, Work Sans)
-
+s
 ---
 *Created by TusharCode007*

@@ -419,6 +419,19 @@ function setPomoMode(mode) {
     });
 }
 
+function adjustPomoTime(minutes) {
+    console.log(`Function called: adjustPomoTime - Adjusting by ${minutes} minutes`);
+    const seconds = minutes * 60;
+
+    // Check if new time would be negative
+    if (pomoTimeLeft + seconds < 0) {
+        return;
+    }
+
+    pomoTimeLeft += seconds;
+    updatePomoDisplay();
+}
+
 // Meditation Functions
 function updateMedDisplay() {
     // console.log('Function called: updateMedDisplay'); // Commented out to avoid spam
@@ -486,6 +499,7 @@ function renderCharts() {
     console.log('Function called: renderCharts - Updating analytics views');
     const dailyCanvas = document.getElementById('dailyChart');
     const monthlyCanvas = document.getElementById('monthlyChart');
+    const studyCanvas = document.getElementById('studyChart');
 
     if (!dailyCanvas || !monthlyCanvas) return;
 
@@ -506,7 +520,7 @@ function renderCharts() {
         const logDate = new Date(log.date).toLocaleDateString('en-US');
         const index = last7Days.indexOf(logDate);
         if (index > -1) {
-            if (log.type === 'task') dailyData.tasks[index]++;
+            if (log.type === 'task' && log.value === 1) dailyData.tasks[index]++;
             if (log.type === 'pomo') dailyData.pomoMinutes[index] += log.value;
         }
     });
@@ -516,12 +530,14 @@ function renderCharts() {
     const fontColor = '#000000';
     const gridColor = '#e0e0e0';
 
-    // Destroy existing charts if needed (simple check)
-    // For now we just create new ones, Chart.js might warn but it works for basic usage. 
-    // Ideally we track instances but for this simple app it's fine.
+    // Helper to destroy old chart instance if exists
+    // We attach chart instances to the canvas element to track them
+    if (dailyCanvas.chartInstance) dailyCanvas.chartInstance.destroy();
+    if (monthlyCanvas.chartInstance) monthlyCanvas.chartInstance.destroy();
+    if (studyCanvas && studyCanvas.chartInstance) studyCanvas.chartInstance.destroy();
 
     // Daily Chart
-    new Chart(dailyCanvas, {
+    dailyCanvas.chartInstance = new Chart(dailyCanvas, {
         type: 'bar',
         data: {
             labels: last7Days.map(d => d.slice(0, -5)), // Remove year
@@ -546,14 +562,21 @@ function renderCharts() {
         }
     });
 
-    // Monthly Chart (Simplification: Just showing distribution of types for now)
+    // Render Study Chart (Focus Hours)
+    if (studyCanvas) {
+        renderStudyChart(studyCanvas, primaryColor, fontColor, gridColor);
+    }
+
+
+
+
+    // Monthly Chart
     const monthlyCounts = { task: 0, pomo: 0, habit: 0 };
     activityLog.forEach(log => {
-        // Just count totals for now
         if (monthlyCounts[log.type] !== undefined) monthlyCounts[log.type]++;
     });
 
-    new Chart(monthlyCanvas, {
+    monthlyCanvas.chartInstance = new Chart(monthlyCanvas, {
         type: 'doughnut',
         data: {
             labels: ['Tasks', 'Pomodoros', 'Habits'],
@@ -639,6 +662,26 @@ if (resetPomoBtn) resetPomoBtn.addEventListener('click', resetPomo);
 document.querySelectorAll('.pomo-tab').forEach(tab => {
     tab.addEventListener('click', (e) => {
         setPomoMode(e.target.dataset.mode);
+    });
+});
+
+const pomoPlusBtn = document.getElementById('pomoPlus');
+if (pomoPlusBtn) pomoPlusBtn.addEventListener('click', () => adjustPomoTime(5));
+
+const pomoMinusBtn = document.getElementById('pomoMinus');
+if (pomoMinusBtn) pomoMinusBtn.addEventListener('click', () => adjustPomoTime(-5));
+
+if (pomoMinusBtn) pomoMinusBtn.addEventListener('click', () => adjustPomoTime(-5));
+
+// Filter Buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        // Remove active class from all
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        // Add to clicked
+        e.target.classList.add('active');
+        // Re-render
+        renderCharts();
     });
 });
 
