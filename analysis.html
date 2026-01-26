@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Analytics</title>
+    <!-- Importing same fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Work+Sans:wght@700;900&display=swap"
+        rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>ANALYTICS<br>DASHBOARD</h1>
+            <p class="date" id="currentDate"></p>
+            <br><br>
+            <a href="index.html" class="btn-theme" style="display:inline-flex; text-decoration:none;">← BACK TO
+                DASHBOARD</a>
+        </header>
+
+        <main>
+            <!-- Daily Activity Chart -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>DAILY ACTIVITY</h2>
+                </div>
+                <div style="position: relative; height:300px; width:100%">
+                    <canvas id="dailyChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Monthly Activity Chart -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>MONTHLY FOCUS</h2>
+                </div>
+                <div style="position: relative; height:300px; width:100%">
+                    <canvas id="monthlyChart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

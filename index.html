@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Booster</title>
+    <!-- Importing a bolder font for Neo-Brutalism -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Work+Sans:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Theme Customizer Button -->
+    <button class="theme-toggle" id="themeToggle" title="Open Color Boost">
+        <!-- Paint Brush Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">
+            <path d="M12 2.69l5.74 5.74-8.44 8.44A2 2 0 0 1 7.88 17.5H4.5v-3.38a2 2 0 0 1 .59-1.42l8.44-8.44z" />
+        </svg>
+    </button>
+
+    <!-- Theme Panel -->
+    <div class="theme-panel" id="themePanel">
+        <div class="theme-panel-header">
+            <h3>COLOR BOOST</h3>
+            <button class="close-panel" id="closePanel">✕</button>
+        </div>
+
+        <div class="theme-controls">
+            <div class="control-group">
+                <label>HUE</label>
+                <div class="slider-container">
+                    <input type="range" id="hueSlider" min="0" max="360" value="204" class="slider hue-slider">
+                    <span class="slider-value" id="hueValue">204°</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>SATURATION</label>
+                <div class="slider-container">
+                    <input type="range" id="saturationSlider" min="0" max="100" value="70" class="slider">
+                    <span class="slider-value" id="saturationValue">70%</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>BRIGHTNESS</label>
+                <div class="slider-container">
+                    <input type="range" id="brightnessSlider" min="0" max="100" value="50" class="slider">
+                    <span class="slider-value" id="brightnessValue">50%</span>
+                </div>
+            </div>
+
+            <div class="theme-actions">
+                <button class="btn-theme btn-random" id="randomBtn">
+                    RANDOM
+                </button>
+                <button class="btn-theme btn-reset" id="resetBtn">
+                    RESET
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>PRODUCTIVITY<br>BOOSTER</h1>
+            <p class="date" id="currentDate"></p>
+            <div style="margin-top: 15px;">
+                <a href="analysis.html" class="btn-theme" style="display:inline-flex; text-decoration:none;">VIEW
+                    ANALYTICS</a>
+            </div>
+        </header>
+
+        <main>
+            <!-- Pomodoro Section (NEW) -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>FOCUS TIMER</h2>
+                </div>
+                <!-- Pomodoro Tabs -->
+                <div class="pomo-tabs">
+                    <button class="pomo-tab active" data-mode="work">WORK</button>
+                    <button class="pomo-tab" data-mode="short">SHORT BREAK</button>
+                    <button class="pomo-tab" data-mode="long">LONG BREAK</button>
+                </div>
+                <div class="pomodoro-display" id="pomoDisplay">25:00</div>
+                <div class="pomodoro-controls">
+                    <button class="btn-theme" id="startPomo">START</button>
+                    <button class="btn-theme" id="pausePomo">PAUSE</button>
+                    <button class="btn-theme" id="resetPomo">RESET</button>
+                </div>
+            </section>
+
+            <!-- Meditation Section (NEW) -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>MEDITATION</h2>
+                </div>
+                <div class="meditation-container">
+                    <div class="breathing-circle" id="breathCircle">
+                        <span id="meditationTimer">05:00</span>
+                    </div>
+                </div>
+                <div class="meditation-controls">
+                    <button class="btn-theme" id="startMeditation">START MEDITATION</button>
+                    <button class="btn-theme" id="stopMeditation">STOP</button>
+                </div>
+                <audio id="meditationAudio" loop>
+                    <source src="meditation.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </section>
+
+            <!-- Quick Notes Section (NEW) -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>QUICK NOTES</h2>
+                </div>
+                <textarea id="quickNote" class="note-area" placeholder="Write something down..."></textarea>
+            </section>
+
+            <!-- Tasks Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>TASKS</h2>
+                    <span class="count" id="taskCount">0</span>
+                </div>
+                <form class="input-form" id="taskForm">
+                    <input type="text" id="taskInput" placeholder="Add a task..." required>
+                    <select id="taskPriority">
+                        <option value="low">LOW</option>
+                        <option value="medium" selected>MED</option>
+                        <option value="high">HIGH</option>
+                    </select>
+                    <button type="submit">ADD</button>
+                </form>
+                <ul class="list" id="taskList"></ul>
+            </section>
+
+            <!-- Habits Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>HABITS</h2>
+                    <span class="count" id="habitCount">0</span>
+                </div>
+                <form class="input-form" id="habitForm">
+                    <input type="text" id="habitInput" placeholder="Add a habit..." required>
+                    <button type="submit">ADD</button>
+                </form>
+                <ul class="list" id="habitList"></ul>
+            </section>
+
+            <!-- Goals Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>GOALS</h2>
+                    <span class="count" id="goalCount">0</span>
+                </div>
+                <form class="input-form" id="goalForm">
+                    <input type="text" id="goalInput" placeholder="Add a goal..." required>
+                    <input type="number" id="goalTarget" placeholder="Target" min="1" required>
+                    <button type="submit">ADD</button>
+                </form>
+                <ul class="list" id="goalList"></ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
