@@ -38,9 +38,5 @@ A powerful, **Neo-Brutalist** productivity suite designed to keep you focused an
 - **LocalStorage API** (for data persistence)
 - **Google Fonts** (Courier Prime, Work Sans)
 
-## Contributing
-
-Feel free to fork this project and submit pull requests. Suggestions for new "Color Boost" presets are welcome!
-
 ---
 *Created by TusharCode007*
